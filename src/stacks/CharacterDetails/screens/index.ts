@@ -1,0 +1,1 @@
+export {CharacterDetailsScreen} from './CharacterDetails';
