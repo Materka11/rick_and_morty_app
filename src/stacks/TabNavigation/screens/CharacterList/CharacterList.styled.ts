@@ -6,4 +6,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  title: {
+    fontWeight: 500,
+    fontSize: 36,
+  },
 });

@@ -1,10 +1,11 @@
-import {View, Text, Button} from 'react-native';
+import {View, Button} from 'react-native';
 import React from 'react';
 import {styles} from './CharacterList.styled';
 import {useNavigation} from '@react-navigation/native';
 import {MainStackNavigationProp} from '../../../Main/Main.routes';
 import {useQuery} from '@tanstack/react-query';
 import {getAllCharacters} from '../../../../services/character/character';
+import InterTextComponent from '../../../../components/InterText/InterText.component';
 
 const CharacterListScreen = () => {
   const {navigate} = useNavigation<MainStackNavigationProp>();
@@ -18,7 +19,7 @@ const CharacterListScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Implement CharactersListScreen</Text>
+      <InterTextComponent style={styles.title}>Characters</InterTextComponent>
       <Button
         title="Navigate to Details screen"
         onPress={(): void => {
