@@ -1,11 +1,22 @@
 import {IAllCharactersResponse} from './character.types';
 import {ENDPOINTS} from '../endpoints';
 
-export const getAllCharacters = async (): Promise<IAllCharactersResponse> => {
+interface IGetAllCharactersParams {
+  page?: string;
+}
+
+export const getAllCharacters = async ({
+  page,
+}: IGetAllCharactersParams): Promise<IAllCharactersResponse> => {
   const baseUrl = ENDPOINTS.characters;
+  const url = new URL(baseUrl);
+
+  if (page) {
+    url.searchParams.append('page', page);
+  }
 
   try {
-    const response = await fetch(baseUrl, {
+    const response = await fetch(url.toString(), {
       method: 'GET',
     });
 

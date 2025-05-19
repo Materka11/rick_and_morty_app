@@ -4,6 +4,8 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Touchable,
+  TouchableHighlight,
 } from 'react-native';
 import {Image} from 'expo-image';
 import {styles} from './CharacterCard.styled';
@@ -15,11 +17,12 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 interface IProps {
   onLike?: (event: GestureResponderEvent) => void;
   character?: ICharacter;
+  onPressCard?: (event: GestureResponderEvent) => void;
 }
 
-const CharacterCardComponent = ({character, onLike}: IProps) => {
+const CharacterCardComponent = ({character, onLike, onPressCard}: IProps) => {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={onPressCard}>
       <View style={styles.info}>
         <View style={styles.row}>
           <DmmonoTextComponent style={styles.label}>NAME</DmmonoTextComponent>
@@ -50,7 +53,7 @@ const CharacterCardComponent = ({character, onLike}: IProps) => {
           <InterTextComponent style={styles.likeText}>LIKE</InterTextComponent>
         </TouchableOpacity>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
