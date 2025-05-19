@@ -6,6 +6,7 @@ import {MainStackNavigationProp} from '../../../Main/Main.routes';
 import {useQuery} from '@tanstack/react-query';
 import {getAllCharacters} from '../../../../services/character/character';
 import InterTextComponent from '../../../../components/InterText/InterText.component';
+import CharacterCardComponent from '../../../../components/CharacterCard/CharacterCard.component';
 
 const CharacterListScreen = () => {
   const {navigate} = useNavigation<MainStackNavigationProp>();
@@ -20,6 +21,14 @@ const CharacterListScreen = () => {
   return (
     <View style={styles.container}>
       <InterTextComponent style={styles.title}>Characters</InterTextComponent>
+      <CharacterCardComponent
+        onLike={(): void => {
+          navigate('CharacterDetailsStack', {
+            screen: 'CharacterDetailsScreen',
+          });
+        }}
+        character={data?.results[0]}
+      />
       <Button
         title="Navigate to Details screen"
         onPress={(): void => {
