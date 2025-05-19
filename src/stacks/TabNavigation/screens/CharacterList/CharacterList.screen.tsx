@@ -91,7 +91,7 @@ const CharacterListScreen = () => {
           onPressCard={() =>
             navigate('CharacterDetailsStack', {
               screen: 'CharacterDetailsScreen',
-              params: {characterId: item.id},
+              params: {character: item},
             })
           }
         />

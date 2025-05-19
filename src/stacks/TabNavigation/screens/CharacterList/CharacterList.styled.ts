@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     margin: 16,
     gap: 24,
+    alignItems: 'center',
   },
   title: {
     fontWeight: '500',
