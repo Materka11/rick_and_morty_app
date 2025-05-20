@@ -3,17 +3,30 @@ import {ENDPOINTS} from '../endpoints';
 
 interface IGetAllCharactersParams {
   page?: string;
+  name?: string;
+  status?: string;
+  species?: string;
+  type?: string;
+  gender?: string;
 }
 
 export const getAllCharacters = async ({
   page,
+  name,
+  status,
+  species,
+  type,
+  gender,
 }: IGetAllCharactersParams): Promise<IAllCharactersResponse> => {
   const baseUrl = ENDPOINTS.characters;
-  const url = new URL(baseUrl);
 
-  if (page) {
-    url.searchParams.append('page', page);
-  }
+  const url = new URL(baseUrl);
+  if (page) url.searchParams.append('page', page);
+  if (name) url.searchParams.append('name', name);
+  if (status) url.searchParams.append('status', status);
+  if (species) url.searchParams.append('species', species);
+  if (type) url.searchParams.append('type', type);
+  if (gender) url.searchParams.append('gender', gender);
 
   try {
     const response = await fetch(url.toString(), {

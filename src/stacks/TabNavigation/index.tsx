@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {CharacterListScreen} from './screens/CharacterList';
 import {FavoriteCharactersScreen} from './screens/FavoriteCharacters';
-import {Pressable, View, StyleSheet} from 'react-native';
+import {Pressable, StyleSheet} from 'react-native';
 import DmmonoTextComponent from '../../components/DmmonoText/DmmonoText.component';
 import {Ionicons} from '@expo/vector-icons';
 
