@@ -42,6 +42,7 @@ export const styles = StyleSheet.create({
     borderRadius: 24,
     borderColor: '#224229',
     borderWidth: 1,
+    backgroundColor: '#FFF',
   },
   likeButton: {
     bottom: 8,
@@ -53,7 +54,7 @@ export const styles = StyleSheet.create({
     borderRadius: 100,
     borderWidth: 1,
     borderColor: '#224229',
-    backgroundColor: '#DAE4DC',
+    backgroundColor: '#FFF',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,

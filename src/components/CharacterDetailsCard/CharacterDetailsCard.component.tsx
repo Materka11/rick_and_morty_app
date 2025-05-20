@@ -1,5 +1,5 @@
-import React from 'react';
-import {GestureResponderEvent, View, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {GestureResponderEvent, View, Pressable} from 'react-native';
 import {Image} from 'expo-image';
 import {styles} from './CharacterDetailsCard.styled';
 import {ICharacter} from '../../services/character/character.types';
@@ -10,9 +10,16 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 interface IProps {
   onLike?: (event: GestureResponderEvent) => void;
   character?: ICharacter;
+  isFavorite?: boolean;
 }
 
-const CharacterDetailsCardComponent = ({character, onLike}: IProps) => {
+const CharacterDetailsCardComponent = ({
+  character,
+  onLike,
+  isFavorite,
+}: IProps) => {
+  const [isFavoriteState, setIsFavoriteState] = useState(isFavorite);
+
   return (
     <View style={styles.card}>
       <View style={styles.media}>
@@ -64,12 +71,24 @@ const CharacterDetailsCardComponent = ({character, onLike}: IProps) => {
           </View>
         </View>
       </View>
-      <TouchableOpacity style={styles.likeButton} onPress={onLike}>
-        <AntDesign name="staro" size={16} color="#fff" />
+      <Pressable
+        style={styles.likeButton}
+        onPress={event => {
+          if (onLike) {
+            onLike(event);
+          }
+          setIsFavoriteState(prevState => !prevState);
+        }}>
+        <AntDesign
+          name={isFavoriteState ? 'star' : 'staro'}
+          size={16}
+          color={isFavoriteState ? '#F89F34' : '#FFF'}
+        />
+
         <InterTextComponent style={styles.likeText}>
-          ADD TO LIKED
+          {isFavoriteState ? 'DELETE FROM LIKED' : 'ADD TO LIKED'}
         </InterTextComponent>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };

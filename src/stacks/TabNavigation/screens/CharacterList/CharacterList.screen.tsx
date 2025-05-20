@@ -10,12 +10,17 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {styles} from './CharacterList.styled';
 import {useNavigation} from '@react-navigation/native';
 import {MainStackNavigationProp} from '../../../Main/Main.routes';
-import {useInfiniteQuery, useQuery} from '@tanstack/react-query';
+import {useInfiniteQuery} from '@tanstack/react-query';
 import {getAllCharacters} from '../../../../services/character/character';
 import InterTextComponent from '../../../../components/InterText/InterText.component';
 import CharacterCardComponent from '../../../../components/CharacterCard/CharacterCard.component';
-import {IAllCharactersResponse} from '../../../../services/character/character.types';
+import {
+  IAllCharactersResponse,
+  ICharacter,
+} from '../../../../services/character/character.types';
 import {Ionicons} from '@expo/vector-icons';
+import {useAtom} from 'jotai';
+import {favoriteCharactersAtom} from '../../../../lib/atoms/atoms';
 
 interface IQueryData {
   pageParams?: number[];
@@ -34,6 +39,8 @@ const CharacterListScreen = () => {
     'female' | 'male' | 'genderless' | 'unknown' | ''
   >('');
   const [isFocused, setIsFocused] = useState(false);
+
+  const [favorites, setFavorites] = useAtom(favoriteCharactersAtom);
 
   const {
     data,
@@ -80,6 +87,19 @@ const CharacterListScreen = () => {
   useEffect(() => {
     refetch();
   }, [nameFilter, statusFilter, speciesFilter, genderFilter, refetch]);
+
+  const toggleFavorite = (character: ICharacter) => {
+    setFavorites(prevFavorites => {
+      const isAlreadyFavorite = prevFavorites.some(
+        fav => fav.id === character.id,
+      );
+      if (isAlreadyFavorite) {
+        return prevFavorites.filter(fav => fav.id !== character.id);
+      } else {
+        return [...prevFavorites, character];
+      }
+    });
+  };
 
   if (isLoading) {
     return (
@@ -150,6 +170,8 @@ const CharacterListScreen = () => {
                 params: {character: item},
               })
             }
+            isFavorite={favorites.some(fav => fav.id === item.id)}
+            onLike={() => toggleFavorite(item)}
           />
         )}
         onEndReached={onEndReached}

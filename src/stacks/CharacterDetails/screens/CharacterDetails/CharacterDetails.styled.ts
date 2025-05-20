@@ -7,4 +7,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     margin: 16,
   },
+  scrollContainer: {
+    flexGrow: 1,
+    alignItems: 'center',
+    paddingVertical: 16,
+  },
 });

@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  GestureResponderEvent,
-  View,
-  Text,
-  TouchableOpacity,
-  Touchable,
-  TouchableHighlight,
-} from 'react-native';
+import {GestureResponderEvent, View, Pressable} from 'react-native';
 import {Image} from 'expo-image';
 import {styles} from './CharacterCard.styled';
 import {ICharacter} from '../../services/character/character.types';
@@ -18,11 +11,17 @@ interface IProps {
   onLike?: (event: GestureResponderEvent) => void;
   character?: ICharacter;
   onPressCard?: (event: GestureResponderEvent) => void;
+  isFavorite?: boolean;
 }
 
-const CharacterCardComponent = ({character, onLike, onPressCard}: IProps) => {
+const CharacterCardComponent = ({
+  character,
+  onLike,
+  onPressCard,
+  isFavorite,
+}: IProps) => {
   return (
-    <TouchableOpacity style={styles.card} onPress={onPressCard}>
+    <Pressable style={styles.card} onPress={onPressCard}>
       <View style={styles.info}>
         <View style={styles.row}>
           <DmmonoTextComponent style={styles.label}>NAME</DmmonoTextComponent>
@@ -48,12 +47,21 @@ const CharacterCardComponent = ({character, onLike, onPressCard}: IProps) => {
 
       <View style={styles.media}>
         <Image source={{uri: character?.image}} style={styles.image} />
-        <TouchableOpacity style={styles.likeButton} onPress={onLike}>
-          <AntDesign name="staro" size={16} color="#224229" />
+        <Pressable
+          style={[
+            styles.likeButton,
+            isFavorite ? {backgroundColor: '#DAE4DC'} : '',
+          ]}
+          onPress={onLike}>
+          <AntDesign
+            name={isFavorite ? 'star' : 'staro'}
+            size={16}
+            color={isFavorite ? '#F89F34' : '#224229'}
+          />
           <InterTextComponent style={styles.likeText}>LIKE</InterTextComponent>
-        </TouchableOpacity>
+        </Pressable>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

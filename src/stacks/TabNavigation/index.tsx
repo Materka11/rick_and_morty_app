@@ -13,7 +13,7 @@ export const TabNavigationStack = () => {
     <Tab.Navigator
       screenOptions={({route}) => ({
         tabBarStyle: {
-          backgroundColor: '#224229',
+          backgroundColor: '#162C1B',
           height: 70,
         },
         tabBarIcon: () => {
@@ -65,6 +65,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   tabButtonFocused: {
-    backgroundColor: '#162C1B',
+    backgroundColor: '#224229',
   },
 });
