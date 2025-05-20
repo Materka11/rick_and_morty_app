@@ -1,0 +1,66 @@
+import {StyleSheet} from 'react-native';
+
+export const styles = StyleSheet.create({
+  card: {
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    padding: 12,
+    borderColor: '#224229',
+    borderWidth: 1,
+    borderRightWidth: 4,
+    borderBottomWidth: 4,
+    width: '100%',
+    minHeight: 224,
+    justifyContent: 'space-between',
+    maxWidth: 358,
+  },
+  info: {},
+  row: {
+    padding: 8,
+  },
+  label: {
+    fontSize: 12,
+    color: '#59695C',
+    letterSpacing: 1,
+    marginBottom: 4,
+  },
+  value: {
+    fontSize: 16,
+    color: '#162C1B',
+  },
+  media: {
+    width: 200,
+    alignItems: 'center',
+    height: 200,
+    flexShrink: 1,
+    marginLeft: 8,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 24,
+    borderColor: '#224229',
+    borderWidth: 1,
+    backgroundColor: '#FFF',
+  },
+  likeButton: {
+    bottom: 8,
+    right: 8,
+    position: 'absolute',
+    marginTop: 8,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: '#224229',
+    backgroundColor: '#FFF',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  likeText: {
+    fontSize: 14,
+    color: '#224229',
+  },
+});
